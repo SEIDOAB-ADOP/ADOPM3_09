@@ -17,8 +17,9 @@ namespace ADOPM3_09_10
             
             var language = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
             var apiKey = "eee86395bdce14b3d962d5956193d800";
+
             var uri = $"https://api.openweathermap.org/data/2.5/forecast?" + 
-                $"lat={latitude}&lon={longitude}&units=metric&lang={language}&appid={apiKey}";
+                $"lat={latitude}&lon={longitude}&appid={apiKey}";
 
             var httpClient = new HttpClient();
 
