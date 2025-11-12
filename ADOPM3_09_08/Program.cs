@@ -13,13 +13,12 @@ namespace ADOPM3_09_08
     {
         static async Task DownloadPageAsync(string fname)
         {
-            WebRequest request = WebRequest.Create("http://www.microsoft.com");
-            request.Proxy = null;
-            
-            using (WebResponse response = await request.GetResponseAsync())
-            using (Stream s = response.GetResponseStream())
-            using (FileStream fs = File.Create(fname))
-                await s.CopyToAsync(fs);
+            using (HttpClient client = new HttpClient())
+            {
+                using (Stream s = await client.GetStreamAsync("http://www.microsoft.com"))
+                using (FileStream fs = File.Create(fname))
+                    await s.CopyToAsync(fs);
+            }
         }
         static void Main(string[] args)
         {
